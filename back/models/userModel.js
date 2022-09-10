@@ -23,5 +23,10 @@ const userModel=mongoose.Schema({
         type:String,
         default:'',
 
-    }
+    },
+    website:{
+        type:String,
+        default:''
+    },
+    timestamp:true
 })
