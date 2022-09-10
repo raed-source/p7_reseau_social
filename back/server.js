@@ -1,3 +1,23 @@
+// const express=require('express');
+// const mongoose= require('mongoose');
+// const cors= require('cors');
+// const bcrypt= require('bcrypt');
+// const cookieParser = require('cookie-parser');
+// const authRouter= require('./routers/authRouter');
+// const dotenv=require('dotenv').config();
+// const app= express();
+// app.use(express.json());
+// app.use(cors());
+// app.use(cookieParser);
+
+// const port = process.env.PORT|| 3000;
+// app.get('/',(req,res)=>{
+//     res.status(500).send('hello !');
+// })
+
+// app.listen(port,()=>{
+//     console.log(`app is running on port ${port}`);
+// })
 const http = require('http');
 const app = require('./app');
 
