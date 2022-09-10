@@ -3,13 +3,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 // ------------AUTHENTIFICATION--------------------
-const authCtrl = {
+exports.authCtrl = {
     register: async (req, res) => {
         try {
             const { fullname, post, email, passward, address } = req.body;
             console.log(req.body);
             res.json({
-                msg:'registerd sucess'
+                msg: 'registerd sucess'
             })
         } catch (err) {
             res.status(500).json({ msg: err.message });

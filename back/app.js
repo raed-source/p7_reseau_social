@@ -1,20 +1,19 @@
 const express = require('express');
 const mongoose= require('mongoose');
-const authRouter= require('./routers/authRouter');
-
 const bcrypt= require('bcrypt');
 const cors= require('cors');
 const cookieParser = require('cookie-parser');
 const dotenv=require('dotenv').config();
+const authRouter= require('./routers/authRouter');
 
-const path = require('path');
+// const path = require('path');
 
 
 
 app.use('/api',authRouter);
 
 
-mongoose.connect('mongodb+srv://raed:raed@cluster0.d70b8rk.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://ra:ra@cluster0.d70b8rk.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
