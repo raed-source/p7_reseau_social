@@ -1,32 +1,28 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
+const { isEmail } = require('validator');
 
-const userSchema = mongoose.Schema({
-    fullname: {
+const userSchema = new mongoose.Schema({
+    pseudo: {
         type: String,
-        max: 25
-    },
-    post: {
-        type: String,
-        max: 25
+        required: true,
+        minLength: 3,
+        maxLength: 55,
+        unique: true,
+        trim: true
     },
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        validate: [isEmail]
     },
     passward: {
         type: String,
         required: true
-    },
-    address: {
-        type: String,
-        default: '',
-
     }
-
 });
 
 userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('users', userSchema);
+module.exports = mongoose.model('user', userSchema);
