@@ -8,7 +8,7 @@ import { PostComponent } from './post/post.component';
 import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { LogInComponent } from './auth/log-in/log-in.component';
 import { HomeComponent } from './home/home.component';
-import { Post } from './models/post-model';
+// import { Post } from './models/post-model';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +17,7 @@ import { Post } from './models/post-model';
     SignUpComponent,
     LogInComponent,
     HomeComponent,
-    Post
+    // Post
   ],
   imports: [
     BrowserModule,
