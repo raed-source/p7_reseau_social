@@ -1,0 +1,11 @@
+1-Post model: 
+title
+postId
+content
+imgUrl
+createdDate
+userId
+nbLike
+liked
+
+2-router: home page is the page d'accueil.

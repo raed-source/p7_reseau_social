@@ -1,12 +1,8 @@
 export class Post {
-title?: string;
-id!: string;
+title!: string;
 content!: string;
-created_datetime!: Date;
-firstname!: string;
-lastname!: string;
-picture_location?: string;
-user_id!: string;
-nbLike?: Number;
-isLiked?: Number;
+imgUrl!:string
+createdDate!: Date;
+nbLike!: Number;
+liked!: Number;
 }
