@@ -1,0 +1,12 @@
+<div class="card" style="width: 25rem;">
+  <img [src]="post.imgUrl" class="card-img-top" [alt]="post.title">
+  <div class="card-body">
+    <h5 class="card-title">{{post.title}}</h5>
+    <p class="card-text">{{post.content}}
+    </p>
+    <p>{{post.createdDate}}</p>
+    <p>{{post.nbLike}} </p>
+    <button (click)="like()">{{buttonText}}</button>
+
+  </div>
+</div>

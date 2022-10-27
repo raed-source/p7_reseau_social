@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { catchError, EMPTY, switchMap, tap } from 'rxjs';
@@ -23,7 +23,9 @@ export class SignUpComponent implements OnInit {
               ngOnInit() {
                 this.signupForm = this.formBuilder.group({
                   email: [null, [Validators.required, Validators.email]],
-                  password: [null, Validators.required]
+                  password: [null, Validators.required],
+                  firstname:[null,[Validators.required]],
+                  lastname:[null,[Validators.required]]
                 });
               }
               onSignup() {

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {Post} from '../models/post-model';
+import { Router } from '@angular/router';
+import { PostService } from '../services/post.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
@@ -8,15 +10,25 @@ import {Post} from '../models/post-model';
 export class PostComponent implements OnInit {
 @Input() post!:Post;
 
-  buttonLike!:string;
+  buttonText!:string;
   buttonDelete!:string;
-  constructor() { }
-
+  constructor(private postService: PostService,
+    private router: Router) {}
   ngOnInit(): void {
-    this.buttonLike='Like';
+
+    this.buttonText='Like';
     this.buttonDelete='Delete';
   }
-onPost(){
-
-}
+  like() {
+    if (this.buttonText === 'Liked!') {
+      this.post.liked++;
+      this.buttonText = 'like';
+    } else {
+      this.post.liked--;
+      this.buttonText = 'Like!'
+    }
+  }
+  onViewPost() {
+    this.router.navigateByUrl(`posts/${this.post.id}`);
+  }
 }

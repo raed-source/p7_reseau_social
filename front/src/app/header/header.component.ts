@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, shareReplay } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  isAuth$!: Observable<boolean>;
 
-  constructor() { }
+  // constructor(private auth: AuthService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    // this.isAuth$ = this.auth.isAuth$.pipe(
+      // shareReplay(1)
+    // );
   }
-
+  onLogout() {
+    // this.auth.logout();
+  }
 }

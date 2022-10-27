@@ -50,7 +50,8 @@ h5 {
   height: 4.5em;
 }
 
-.left-nav, .right-nav {
+.left-nav,
+.right-nav {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;

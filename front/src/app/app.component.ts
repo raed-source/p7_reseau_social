@@ -6,18 +6,8 @@ import { Post } from './models/post-model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-myPost!:Post;
 
+  ngOnInit(): void {
 
-ngOnInit(){
-  this.myPost={
-  title:'cocou',
-  content: 'string',
-  imgUrl:'string',
-  createdDate: new Date,
-  nbLike: 5,
-  liked: 5
-  };
-
-}
+  }
 }

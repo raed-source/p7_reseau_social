@@ -1,11 +1,20 @@
 <nav>
+  <div class="lef-nav">
+    <ul>
+      <li> <a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      </li>
+      <li> <a routerLink="posts" routerLinkActive="active">Posts</a>
+      </li>
+    </ul>
+  </div>
+
   <div class="logo">
     <div class="logo-image">
       <img alt="Flame logo" src="../../assets/logo.png">
     </div>
     <div class="logo-text">
       <h1>
-       Groupmania
+        Groupmania
       </h1>
       <h5>
         Reseau Social intranet
@@ -15,17 +24,17 @@
   <div class="right-nav">
     <ul>
       <li>
-        <a>
+        <a routerLink="signup" routerLinkActive="active" *ngIf="!(isAuth$ | async)">
           SIGN UP
         </a>
       </li>
       <li>
-        <a>
+        <a routerLink="login" routerLinkActive="active" *ngIf="!(isAuth$ | async)">
           LOGIN
         </a>
       </li>
       <li>
-        <a>
+        <a (click)="onLogout()" *ngIf="isAuth$ | async">
           LOGOUT
         </a>
       </li>
