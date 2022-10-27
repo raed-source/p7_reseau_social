@@ -22,8 +22,8 @@ export class AuthService {
 
   constructor(private httpClient:HttpClient, private router: Router) { }
 
-  createUser(email: string, password: string) {
-    return this.httpClient.post<{ message: string }>('http://localhost:3000/api/auth/signUp', {email: email, password: password});
+  createUser(email: string, password: string,firstname:string, lastname:string) {
+    return this.httpClient.post<{ message: string }>('http://localhost:5000/api/auth/signUp', {email: email, password: password, firstname:firstname,lastname:lastname});
   }
 
 //   public createUser(user:User): Observable<User>{

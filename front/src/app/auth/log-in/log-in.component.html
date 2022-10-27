@@ -1,13 +1,6 @@
 <mat-spinner *ngIf="loading"></mat-spinner>
 <form [formGroup]="loginForm" *ngIf="!loading">
-  <div class="form-group">
-    <label for="firstname">First name</label>
-    <input type="text" id="firstname" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="lastname">Last name</label>
-    <input type="text" id="lastname" class="form-control">
-  </div>
+
   <div class="form-group">
     <label for="email">Email</label>
     <input type="email" class="form-control" id="email" formControlName="email">
