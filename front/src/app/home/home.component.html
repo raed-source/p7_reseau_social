@@ -4,3 +4,7 @@
     <button (click)="onContinue()">Continuer vers post</button>
   </div>
 </div>
+<form>
+  <label for="emailInput">Inscrivez-vous pour recevoir notre newsletter !</label>
+  <input id="emailInput" name="email" type="email" [(ngModel)]="email"> <button type="submit">OK!</button>
+</form>

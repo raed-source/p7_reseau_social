@@ -6,12 +6,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
+  email!:string;
   constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
   onContinue(): void {
     this.router.navigateByUrl('facesnaps');
+  }
+  onSubmitForm() {
+    console.log(this.email);
   }
 }
