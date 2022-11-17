@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
@@ -6,15 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  email!:string;
+  userEmail!: string;
   constructor(private router:Router) { }
 
   ngOnInit(): void {
   }
   onContinue(): void {
-    this.router.navigateByUrl('facesnaps');
+    this.router.navigateByUrl('posts');
   }
-  onSubmitForm() {
-    console.log(this.email);
-  }
+  onSubmitForm(form: NgForm) {
+    console.log(form.value);
+}
 }

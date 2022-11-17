@@ -19,16 +19,17 @@ export class PostComponent implements OnInit {
     this.buttonText='Like';
     this.buttonDelete='Delete';
   }
-  like() {
-    if (this.buttonText === 'Liked!') {
-      this.post.liked++;
-      this.buttonText = 'like';
-    } else {
-      this.post.liked--;
-      this.buttonText = 'Like!'
+  liked(){
+    if(this.buttonText==='DisLike'){
+      this.postService.likedPostById(this.post.id, 'DisLike');
+      this.buttonText='Like';
+    }else{
+      this.postService.likedPostById(this.post.id, 'Like');
+      this.buttonText='DisLike';
+
     }
   }
   onViewPost() {
     this.router.navigateByUrl(`posts/${this.post.id}`);
-  }
+}
 }

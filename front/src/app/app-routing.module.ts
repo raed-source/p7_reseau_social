@@ -5,6 +5,7 @@ import { SignUpComponent } from './auth/sign-up/sign-up.component';
 import { LogInComponent } from './auth/log-in/log-in.component';
 import { PostListComponent } from './post-list/post-list.component';
 import { SinglePostComponent } from './single-post/single-post.component';
+import { NewPostComponent } from './new-post/new-post.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   },
 {
   path:'login' ,component:LogInComponent
+},
+{
+  path: 'create', component: NewPostComponent
+
 }
 ];
 

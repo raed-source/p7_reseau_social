@@ -6,14 +6,14 @@
   <button>Click </button>
   <p>nbLike</p>
 </div> -->
-<div class="card" style="width: 25rem;">
+<div class="post-card" style="width: 25rem;">
   <img [src]="post.imgUrl" class="card-img-top" [alt]="post.title">
   <div class="card-body">
     <h5 class="card-title">{{post.title}}</h5>
     <p class="card-text">{{post.content}}
     </p>
-    <p>{{post.createdDate}}</p>
-    <p>{{post.nbLike}} </p>
+    <p>{{post.dateCreate}}</p>
+    <p>{{post.dislike}} </p>
     <button (click)="onViewPost()">VIEW</button>
 
   </div>

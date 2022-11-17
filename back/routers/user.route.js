@@ -1,13 +1,13 @@
-// ---------------partie require-------------------------------
 const express = require('express');
-const authController = require('../controllers/auth.controller');
 const validEmail = require('../middlewares/email');
 const validPassword = require('../middlewares/password');
 const router = express.Router();
+const userCtrl = require('../controllers/user.controller');
 
-router.post("/register",validEmail,validPassword,authController.signup);
-// router.post('/login', authController.login);
-// router.post('/logout', authCtrl.logout);
+
+
+router.post('/signup', validEmail, validPassword, userCtrl.signup);
+router.post('/login', userCtrl.login);
 // router.post('/refrech_token', userCtrl.generateAccessToken);
 
 module.exports = router;

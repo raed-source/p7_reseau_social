@@ -1,10 +1,13 @@
 <div class="landing-block">
-  <img src="assets/logo.png" alt="logo">
+  <div>
+    <img src="assets/images/Lionel-Richie-.png" alt="logo">
+  </div>
   <div class="landing-links">
     <button (click)="onContinue()">Continuer vers post</button>
   </div>
+  <form #emailForm="ngForm" (ngSubmit)="onSubmitForm(emailForm)">
+    <label for="emailInput">Inscrivez-vous pour recevoir notre newsletter !</label>
+    <input id="emailInput" name="userEmail" type="email" [(ngModel)]="userEmail">
+    <button type="submit">OK!</button>
+  </form>
 </div>
-<form>
-  <label for="emailInput">Inscrivez-vous pour recevoir notre newsletter !</label>
-  <input id="emailInput" name="email" type="email" [(ngModel)]="email"> <button type="submit">OK!</button>
-</form>

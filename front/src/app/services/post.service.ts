@@ -1,61 +1,65 @@
-import { Injectable } from '@angular/core';
-import { Post } from '../models/post-model';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from './auth.service';
-import { catchError, mapTo, of, Subject, tap, throwError } from 'rxjs';
-
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Post } from "../models/post-model";
+import { map, Observable, switchMap } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn:'root'
 })
-export class PostService {
-  posts$ = new Subject<Post[]>();
-  constructor(private httpClient: HttpClient,
-    private auth: AuthService) {}
-  posts: Post[] = [
-    {
-      id: 1,
-      title: 'Archibald',
-      content: 'Mon meilleur ami depuis tout petit !',
-      imgUrl: 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg',
-      createdDate: new Date(),
-      liked: 47,
-    nbLike:4    },
-    {
-      id: 2,
-      title: 'Three Rock Mountain',
-      content: 'Un endroit magnifique pour les randonnées.',
-      imgUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Three_Rock_Mountain_Southern_Tor.jpg/2880px-Three_Rock_Mountain_Southern_Tor.jpg',
-      createdDate: new Date(),
-      liked: 6,
-      nbLike: 4
-    }
-  ];
+export class PostService{
+  constructor(private http:HttpClient){}
+  posts:Post[]=[]
+  // ******************************************************************
+getAllPosts(): Observable<Post[]> {
+  return this.http.get<Post[]>('http://localhost:3000/posts');
+}
+// ********************************************************************
+likedPostById(id: number, likeType:string): Observable<Post> {
+//   const post = this.getPostById(id); // à remplacer par un Observable
+//  likeType==='Like'?post.like='Ok':post.like='';
+  return this.getPostById(id).pipe(
+    map(post=>({
+      ...post,
+      like:likeType==='Like'?'ok':''
+    })),
+    switchMap(updatePost=>this.http.put<Post>(`http://localhost:3000/posts/${id}`,updatePost))
+  )
+}
+// ********************************************************************
 
-  getAllPosts(): Post[] {
-    return this.posts;
+disLikedById(id: number): void {
+  const post = this.posts.find(post => post.id === id);
+  if (post) {
+      post.like='';
+  } else {
+      throw new Error('Post not found!');
   }
+}
+// ********************************************************************
 
-  getPostById(postId: number): Post {
-    const post = this.posts.find(post => post.id === postId);
-    if (!post) {
-      throw new Error('le post not found!');
-    } else {
-      return post;
-    }
-  }
+getPostById(id: number): Observable<Post> {
+  return this.http.get<Post>(`http://localhost:3000/posts/${id}`)
+}
+// ********************************************************************
 
-  postById(postId: number, postType: 'like' | 'dislike'): void {
-    const post = this.getPostById(postId);
-    postType === 'like' ? post.liked++ : post.liked--;
-  }
-
-  like(id: string, like: boolean) {
-    return this.httpClient.post<{ message: string }>(
-      'http://localhost:3000/api/posts/' + id + '/like',
-      { userId: this.auth.getUserId(), like: like ? 1 : 0 }
-    ).pipe(
-      mapTo(like),
-      catchError(error => throwError(error.error.message))
-    );
-  }
+addPost(formValue:{ title: string, content: string, imgUrl: string, location?: string }):Observable<Post>{
+  return this.getAllPosts().pipe(
+    map(posts=>[...posts].sort((a:Post,b:Post)=>a.id-b.id)),
+    map(sortedPosts=>sortedPosts[sortedPosts.length-1]),
+    map(previousPost=>({
+      ...formValue,
+      like:'',
+      dateCreat:new Date(),
+      id:previousPost.id+1
+    })),
+    switchMap(newPost=>this.http.post<Post>('http://localhost:3000/posts',newPost))
+  )
+const post:Post={
+  ...formValue,
+  dateCreate:new Date,
+  like:'0',
+  dislike:'0',
+  id:this.posts[this.posts.length-1].id+1
+}
+this.posts.push(post);
+}
 }

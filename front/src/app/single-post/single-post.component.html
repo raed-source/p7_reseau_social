@@ -1,12 +1,13 @@
-<div class="card" style="width: 25rem;">
-  <img [src]="post.imgUrl" class="card-img-top" [alt]="post.title">
-  <div class="card-body">
-    <h5 class="card-title">{{post.title}}</h5>
-    <p class="card-text">{{post.content}}
-    </p>
-    <p>{{post.createdDate}}</p>
-    <p>{{post.nbLike}} </p>
-    <button (click)="like()">{{buttonText}}</button>
-
-  </div>
+<div class="post-card" *ngIf="post$ |async as post" [ngClass]="{ liked: buttonText === 'DisLike' }">
+  <h2>{{post.title }} </h2>
+  <p>{{post.content}}</p>
+  <a href="" routerLink="/posts">Back</a>
+  <img [src]="post.imgUrl" [alt]="post.title">
+  <p>{{post.dislike}}</p>
+  <p>{{post.dateCreate| date: 'à HH:mm, le d MMMM yyyy'}} </p>
+  <button (click)="liked(post.id)">{{buttonText}}</button>
+  <span>{{post.like}}</span>
+  <p *ngIf="post.location=='lyon'">
+    <span>{{post.location}}</span>
+  </p>
 </div>
