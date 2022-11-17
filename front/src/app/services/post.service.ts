@@ -9,10 +9,12 @@ export class PostService{
   constructor(private http:HttpClient){}
   posts:Post[]=[]
   // ******************************************************************
+
 getAllPosts(): Observable<Post[]> {
   return this.http.get<Post[]>('http://localhost:3000/posts');
 }
 // ********************************************************************
+
 likedPostById(id: number, likeType:string): Observable<Post> {
 //   const post = this.getPostById(id); // à remplacer par un Observable
 //  likeType==='Like'?post.like='Ok':post.like='';
@@ -39,7 +41,6 @@ disLikedById(id: number): void {
 getPostById(id: number): Observable<Post> {
   return this.http.get<Post>(`http://localhost:3000/posts/${id}`)
 }
-// ********************************************************************
 
 addPost(formValue:{ title: string, content: string, imgUrl: string, location?: string }):Observable<Post>{
   return this.getAllPosts().pipe(

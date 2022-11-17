@@ -15,12 +15,26 @@ mat-spinner {
   margin: auto;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+a {
+  margin: 0 10px;
+  color: #333;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.active {
+  color: #666;
+  text-decoration: underline;
 }
 /*# sourceMappingURL=styles.css.map */

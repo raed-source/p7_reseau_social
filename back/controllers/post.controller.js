@@ -7,7 +7,7 @@ exports.createPost = (req, res, next) => {
     const post = new Post({
         ...postObject,
         userId: req.auth.userId,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+        imgUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
 
     post.save()
@@ -36,7 +36,7 @@ exports.modifyPost = (req, res, next) => {
         _id: req.params.id,
         title: req.body.title,
         description: req.body.description,
-        imageUrl: req.body.imageUrl,
+        imgUrl: req.body.imgUrl,
         price: req.body.price,
         userId: req.body.userId
     });
@@ -61,7 +61,7 @@ exports.deletePost = (req, res, next) => {
             if (post.userId != req.auth.userId) {
                 res.status(401).json({ message: 'Not authorized' });
             } else {
-                const filename = post.imageUrl.split('/images/')[1];
+                const filename = post.imgUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
                     Post.deleteOne({ _id: req.params.id })
                         .then(() => { res.status(200).json({ message: 'Objet supprimé !' }) })
